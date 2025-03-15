@@ -1,38 +1,36 @@
 const ganache = require('ganache');
+const assert = require('assert');
 const { Web3 } = require('web3');
-
+const web3 = new Web3(ganache.provider());
 // updated ganache and web3 imports added for convenience
 
-const assert = require('assert');
-
 // contract test code will go here
-const web3 = new Web3(ganache.provider());
-
-// Mocha Functions
-// Function : Purpose
-// it : Run a test and make an assertion
-// describe : Groups together 'it' functions
-// beforeEach : Execute some general setup code
-
-class Car {
-    park() {
-        return 'stopped';
-    }
-    drive() {
-        return 'vroom';
-    }
-}
-
-let car;
+// callback patterns (legacy)
 beforeEach( () => {
-    car = new Car();
+    // Get a list of a ll accounts
+    web3.eth.getAccounts()
+    .then(fetchedAccounts => {
+        console.log(fetchedAccounts);
+    })
 })
 
-describe('Car', () => {
-    it('car park', () => {
-        assert.equal(car.park(), 'stopped');
-    });
-    it('can run', () => {
-        assert.equal(car.drive(), 'vroom');
-    });
+describe('Inbox', () => {
+    it('deploys a contract', () => {})
+})
+
+
+/*
+beforeEach( async () => {
+    // Get a list of all accounts
+    accounts = await web3.eth.getAccounts();
+
+    // Use one of those accounts to deploy contract
 });
+
+describe('Inbox', () => {
+    it('deploys a contract', () => {})
+})
+
+*/
+
+
