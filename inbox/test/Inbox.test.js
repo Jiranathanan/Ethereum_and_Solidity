@@ -27,6 +27,11 @@ describe('Inbox', () => {
         // ok method is checking if the value is exist ?
         assert.ok(inbox.options.address);
     })
+
+    it('has a default message', async () => {
+        const message = await inbox.methods.message().call();
+        assert.equal(message, 'Hi there!')
+    })
 })
 
 
